@@ -1,0 +1,81 @@
+### YamlMime:PowershellCmdlet
+summary: |-
+  Use the New-CsOnlineAudioFile cmdlet to create a new audio file.
+module: SkypeForBusiness
+notes: ""
+inputs:
+- name: <xref href="None" data-throw-if-not-resolved="False" />
+  description: ""
+outputs:
+- name: <xref href="Microsoft.Rtc.Management.Hosted.Online.Models.AudioFile" data-throw-if-not-resolved="False" />
+  description: ""
+links:
+- text: Export-CsOnlineAudioFile
+  href: Export-CsOnlineAudioFile.yml
+- text: Get-CsOnlineAudioFile
+  href: Get-CsOnlineAudioFile.yml
+- text: Import-CsOnlineAudioFile
+  href: Import-CsOnlineAudioFile.yml
+- text: Remove-CsOnlineAudioFile
+  href: Remove-CsOnlineAudioFile.yml
+syntaxes:
+- New-CsOnlineAudioFile -FileName <String> -Content <Byte[]> [-Tenant <Guid>] [<CommonParameters>]
+examples:
+- title: '-------------------------- Example 1 --------------------------'
+  code: |-
+    $content = Get-Content "C:\Media\Welcome.wav" -Encoding byte -ReadCount 0
+    $audioFile = New-CsOnlineAudioFile -FileName "Hello.wav" -Content $content
+  description: |-
+    This example creates a new audio file using the WAV content that has a filename of Hello.wav.
+  summary: ""
+parameters:
+- type: <xref href="System.Byte" data-throw-if-not-resolved="False" /><span>[</span><span>]</span>
+  name: Content
+  isRequired: true
+  description: |+
+    The Content parameter represents the content of the audio file. Supported formats are WAV (uncompressed, linear PCM with 8/16/32-bit depth in mono or stereo), WMA (mono only), and MP3. The audio file content cannot be more 5MB.
+
+  defaultValue: None
+  position: Named
+  aliases: ""
+  applicable:
+  - Skype for Business Online
+  parameterValueGroup: ""
+- type: <xref href="System.string" data-throw-if-not-resolved="False" />
+  name: FileName
+  isRequired: true
+  description: |+
+    The FileName parameter is the name of the audio file. For example, the file name for the file C:\Media\Welcome.wav is Welcome.wav.
+
+  defaultValue: None
+  position: Named
+  aliases: ""
+  applicable:
+  - Skype for Business Online
+  parameterValueGroup: ""
+- type: <xref href="System.Guid" data-throw-if-not-resolved="False" />
+  name: Tenant
+  description: ""
+  defaultValue: None
+  position: Named
+  aliases: ""
+  applicable:
+  - Skype for Business Online
+  parameterValueGroup: ""
+applicable:
+- Skype for Business Online
+uid: SkypeForBusiness.New-CsOnlineAudioFile
+name: New-CsOnlineAudioFile
+description: |-
+  The New-CsOnlineAudioFile cmdlet creates a new audio file for use with the Organizational Auto Attendant (OAA) service.
+  Please note, to import a new audio file for use with the Auto Attendant (AA) or Call Queue (CQ) service, please use [Import-CSOnlineAudioFile](Import-CSOnlineAudioFile.yml).
+metadata:
+  external help file: Microsoft.Rtc.Management.Hosted.dll-help.xml
+  online version: https://docs.microsoft.com/powershell/module/skype/new-csonlineaudiofile
+  applicable: Skype for Business Online
+  title: New-CsOnlineAudioFile
+  schema: 2.0.0
+  manager: bulenteg
+  author: tomkau
+  ms.author: tomkau
+  ms.reviewer: ""

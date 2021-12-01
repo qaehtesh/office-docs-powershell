@@ -1,0 +1,121 @@
+### YamlMime:PowershellCmdlet
+summary: |-
+  The Remove-CsHuntGroup cmdlet deletes an existing Call Queue.
+module: SkypeForBusiness
+notes: ""
+inputs:
+- name: <xref href="System.Uri" data-throw-if-not-resolved="False" />
+  description: ""
+outputs:
+- name: <xref href="Microsoft.Rtc.Management.Hosted.HuntGroup.Models.HuntGroup" data-throw-if-not-resolved="False" />
+  description: ""
+syntaxes:
+- Remove-CsHuntGroup -PrimaryUri <System.Uri> [<CommonParameters>]
+examples:
+- title: '-------------------------- Example 1 --------------------------'
+  code: |-
+    Remove-CsHuntGroup -PrimaryUri "sip:hg_a82e2406b9b5474a9878e9659f32dbc3@litwareinc.com"
+  description: |-
+    This example deletes the Call Queue with the primary uri "sip:hg_a82e2406b9b5474a9878e9659f32dbc3@litwareinc.com".
+  summary: ""
+parameters:
+- type: <xref href="System.Boolean" data-throw-if-not-resolved="False" />
+  name: BypassDualWrite
+  description: |+
+    This parameter is reserved for Microsoft internal use only.
+
+  defaultValue: None
+  position: Named
+  aliases: ""
+  applicable:
+  - Skype for Business Online
+  parameterValueGroup: ""
+- type: <xref href="SwitchParameter" data-throw-if-not-resolved="False" />
+  name: Confirm
+  description: |+
+    The Confirm switch causes the command to pause processing, and requires confirmation to proceed. This parameter is reserved for Microsoft internal use only.
+
+  defaultValue: None
+  position: Named
+  aliases: cf
+  applicable:
+  - Skype for Business Online
+  parameterValueGroup: ""
+- type: <xref href="Object" data-throw-if-not-resolved="False" />
+  name: DomainController
+  description: |+
+    This parameter is reserved for Microsoft internal use only.
+
+    PARAMVALUE: Fqdn
+
+  defaultValue: None
+  position: Named
+  aliases: DC
+  applicable:
+  - Skype for Business Online
+  parameterValueGroup: ""
+- type: <xref href="SwitchParameter" data-throw-if-not-resolved="False" />
+  name: Force
+  description: |+
+    This parameter is reserved for Microsoft internal use only.
+
+  defaultValue: None
+  position: Named
+  aliases: ""
+  applicable:
+  - Skype for Business Online
+  parameterValueGroup: ""
+- type: <xref href="System.Uri" data-throw-if-not-resolved="False" />
+  name: PrimaryUri
+  isRequired: true
+  description: |+
+    The PrimaryUri parameter represents the SIP address for the Call Queue. It must start with "sip:".
+
+  defaultValue: None
+  position: Named
+  aliases: ""
+  applicable:
+  - Skype for Business Online
+  parameterValueGroup: ""
+- type: <xref href="System.Guid" data-throw-if-not-resolved="False" />
+  name: Tenant
+  description: |+
+    This parameter is reserved for Microsoft internal use only.
+
+  defaultValue: None
+  position: Named
+  aliases: ""
+  applicable:
+  - Skype for Business Online
+  parameterValueGroup: ""
+- type: <xref href="SwitchParameter" data-throw-if-not-resolved="False" />
+  name: WhatIf
+  description: |+
+    The WhatIf switch causes the command to simulate its results. By using this switch, you can view what changes would occur without having to commit those changes. This parameter is reserved for Microsoft internal use only.
+
+  defaultValue: None
+  position: Named
+  aliases: wi
+  applicable:
+  - Skype for Business Online
+  parameterValueGroup: ""
+applicable:
+- Skype for Business Online
+uid: SkypeForBusiness.Remove-CsHuntGroup
+name: Remove-CsHuntGroup
+description: |-
+  The Remove-CsHuntGroup cmdlet deletes an existing Call Queue specified by the PrimaryUri parameter.
+
+  The Remove-CsHuntGroup cmdlet may suggest additional steps required to complete the Call Queue setup.
+
+  Please Note: This cmdlet is part of the first generation provisioning and is no longer supported. Please use the cmdlets which follow this format "*-CsCallQueue*" instead.
+metadata:
+  external help file: Microsoft.Rtc.Management.Hosted.dll-help.xml
+  online version: https://docs.microsoft.com/powershell/module/skype/remove-cshuntgroup
+  applicable: Skype for Business Online
+  title: Remove-CsHuntGroup
+  schema: 2.0.0
+  manager: bulenteg
+  author: tomkau
+  ms.author: tomkau
+  ms.reviewer: ""

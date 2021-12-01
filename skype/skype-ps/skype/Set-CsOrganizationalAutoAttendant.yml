@@ -1,0 +1,137 @@
+### YamlMime:PowershellCmdlet
+summary: |-
+  > [!CAUTION]
+  > This cmdlet has been deprecated and is no longer supported.  This cmdlet will be removed in the near future.
+  > 
+  > Please use [Set-CsAutoAttendant](Set-CsAutoAttendant.yml) cmdlet instead.
+
+
+  Use the Set-CsOrganizationalAutoAttendant cmdlet to modify the properties of an existing Auto Attendant (AA).
+module: SkypeForBusiness
+notes: ""
+inputs:
+- name: <xref href="Microsoft.Rtc.Management.Hosted.OAA.Models.OrgAutoAttendant" data-throw-if-not-resolved="False" />
+  description: |-
+    The Set-CsOrganizationalAutoAttendant cmdlet accepts a Microsoft.Rtc.Management.Hosted.OAA.Models.OrgAutoAttendant object as the Instance parameter.
+outputs:
+- name: <xref href="None" data-throw-if-not-resolved="False" />
+  description: |-
+    The Set-CsOrganizationalAutoAttendant cmdlet does not return any objects or values. Instead, the cmdlet modifies the instance of the Microsoft.Rtc.Management.Hosted.OAA.Models.OrgAutoAttendant object that is passed in as the Instance parameter.
+links:
+- text: New-CsOrganizationalAutoAttendant
+  href: New-CsOrganizationalAutoAttendant.yml
+- text: Get-CsOrganizationalAutoAttendant
+  href: Get-CsOrganizationalAutoAttendant.yml
+syntaxes:
+- >-
+  Set-CsOrganizationalAutoAttendant [-Instance] <OrgAutoAttendant> [-Tenant <Guid>]
+
+   [-DomainController <Fqdn>] [-Force] [-WhatIf] [-Confirm] [<CommonParameters>]
+examples:
+- title: '-------------------------- Example 1 --------------------------'
+  code: |-
+    $oaa = Get-CsOrganizationalAutoAttendant -PrimaryUri "sip:mainoaa@contoso.com"
+    $oaa.LineUris = @([System.Uri] "tel:+11098765432")
+    Set-CsOrganizationalAutoAttendant -Instance $oaa
+  description: |-
+    This example changes the telephone number for the OAA that has a Primary URI of sip:mainoaa@contoso.com.
+  summary: ""
+- title: '-------------------------- Example 2 --------------------------'
+  code: |-
+    $oaa = Get-CsOrganizationalAutoAttendant -PrimaryUri "sip:mainoaa@contoso.com"
+
+    $christmasGreetingPrompt = New-CsOrganizationalAutoAttendantPrompt -TextToSpeechPrompt "Our offices are closed for Christmas from December 24 to December 26. Please call back later."
+    $christmasMenuOption = New-CsOrganizationalAutoAttendantMenuOption -Action DisconnectCall -DtmfResponse Automatic 
+    $christmasMenu = New-CsOrganizationalAutoAttendantMenu -Name "Christmas Menu" -MenuOptions @($christmasMenuOption)
+    $christmasCallFlow = New-CsOrganizationalAutoAttendantCallFlow -Name "Christmas" -Greetings @($christmasGreetingPrompt) -Menu $christmasMenu
+
+    $dtr = New-CsOnlineDateTimeRange -Start "24/12/2017" -End "26/12/2017"
+    $christmasSchedule = New-CsOnlineSchedule -Name "Christmas" -FixedSchedule -DateTimeRanges @($dtr)
+
+    $christmasCallHandlingAssociation = New-CsOrganizationalAutoAttendantCallHandlingAssociation -Type Holiday -ScheduleId $christmasSchedule.Id -CallFlowId $christmasCallFlow.Id
+
+    $oaa.CallFlows = $oaa.CallFlows + @($christmasCallFlow)
+    $oaa.Schedules = $oaa.Schedules + @($christmasSchedule)
+    $oaa.CallHandlingAssociations = $oaa.CallHandlingAssociations + @($christmasCallHandlingAssociation)
+
+    Set-CsOrganizationalAutoAttendant -Instance $oaa
+  description: |-
+    This example adds a Christmas holiday to an OAA that a Primary URI of sip:mainoaa@contoso.com.
+  summary: ""
+parameters:
+- type: <xref href="SwitchParameter" data-throw-if-not-resolved="False" />
+  name: Confirm
+  description: |+
+    Prompts you for confirmation before running the cmdlet.
+
+  defaultValue: None
+  position: Named
+  aliases: cf
+  parameterValueGroup: ""
+- type: <xref href="Fqdn" data-throw-if-not-resolved="False" />
+  name: DomainController
+  description: |+
+    {{Fill DomainController Description}}
+
+  defaultValue: None
+  position: Named
+  aliases: DC
+  parameterValueGroup: ""
+- type: <xref href="SwitchParameter" data-throw-if-not-resolved="False" />
+  name: Force
+  description: |+
+    {{Fill Force Description}}
+
+  defaultValue: None
+  position: Named
+  aliases: ""
+  parameterValueGroup: ""
+- type: <xref href="OrgAutoAttendant" data-throw-if-not-resolved="False" />
+  name: Instance
+  isRequired: true
+  description: |+
+    The Instance parameter is the object reference to the OAA to be modified. 
+
+    You can retrieve an object reference to an existing OAA by using the Get-CsOrganizationalAutoAttendant cmdlet and assigning the returned value to a variable.
+
+  defaultValue: None
+  position: "1"
+  aliases: ""
+  applicable:
+  - Skype for Business Online
+  parameterValueGroup: ""
+- type: <xref href="Guid" data-throw-if-not-resolved="False" />
+  name: Tenant
+  description: ""
+  defaultValue: None
+  position: Named
+  aliases: ""
+  applicable:
+  - Skype for Business Online
+  parameterValueGroup: ""
+- type: <xref href="SwitchParameter" data-throw-if-not-resolved="False" />
+  name: WhatIf
+  description: |+
+    Shows what would happen if the cmdlet runs.
+    The cmdlet is not run.
+
+  defaultValue: None
+  position: Named
+  aliases: wi
+  parameterValueGroup: ""
+applicable:
+- Skype for Business Online
+uid: SkypeForBusiness.Set-CsOrganizationalAutoAttendant
+name: Set-CsOrganizationalAutoAttendant
+description: |-
+  The Set-CsOrganizationalAutoAttendant cmdlet lets you modify the properties of an auto attendant. For example, you can change the phone number, the operator, the greeting, or the menu prompts.
+metadata:
+  external help file: Microsoft.Rtc.Management.Hosted.dll-help.xml
+  online version: https://docs.microsoft.com/powershell/module/skype/set-csorganizationalautoattendant
+  applicable: Skype for Business Online
+  title: Set-CsOrganizationalAutoAttendant
+  schema: 2.0.0
+  manager: bulenteg
+  author: tomkau
+  ms.author: tomkau
+  ms.reviewer: ""

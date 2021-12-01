@@ -1,0 +1,53 @@
+### YamlMime:PowershellCmdlet
+summary: |-
+  Use the Sync-CsOnlineApplicationInstance cmdlet to sync the application instance from Azure Active Directory into Agent Provisioning Service.
+module: SkypeForBusiness
+syntaxes:
+- Sync-CsOnlineApplicationInstance [-ObjectId <guid>] [-Tenant <Guid>] [-Force] [-WhatIf] [-Confirm] [<CommonParameters>]
+examples:
+- title: '-------------------------- Example 1 --------------------------'
+  code: |-
+    Sync-CsOnlineApplicationInstance -ObjectId 00000000-0000-0000-0000-000000000000
+  description: |-
+    This example sync application instance with object id "00000000-0000-0000-0000-000000000000" into Agent Provisioning Service.
+  summary: ""
+parameters:
+- type: <xref href="System.Guid" data-throw-if-not-resolved="False" />
+  name: ObjectId
+  isRequired: true
+  description: |+
+    The application instance ID.
+
+  defaultValue: None
+  position: Named
+  aliases: ""
+  applicable:
+  - Skype for Business Online
+  parameterValueGroup: ""
+- type: <xref href="System.Guid" data-throw-if-not-resolved="False" />
+  name: Tenant
+  description: |+
+    The Tenant ID.
+
+  defaultValue: None
+  position: Named
+  aliases: ""
+  applicable:
+  - Skype for Business Online
+  parameterValueGroup: ""
+applicable:
+- Skype for Business Online
+uid: SkypeForBusiness.Sync-CsOnlineApplicationInstance
+name: Sync-CsOnlineApplicationInstance
+description: |-
+  Use the Sync-CsOnlineApplicationInstance cmdlet to sync application instances from Azure Active Directory into Agent Provisioning Service.
+metadata:
+  external help file: Microsoft.Rtc.Management.Hosted.dll-help.xml
+  online version: https://docs.microsoft.com/powershell/module/skype/sync-csonlineapplicationinstance
+  applicable: Skype for Business Online
+  title: Sync-CsOnlineApplicationInstance
+  schema: 2.0.0
+  author: xixian73
+  ms.author: xixian
+  manager: naveenv
+  ms.reviewer: ""

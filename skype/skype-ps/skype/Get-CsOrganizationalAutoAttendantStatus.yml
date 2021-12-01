@@ -1,0 +1,98 @@
+### YamlMime:PowershellCmdlet
+summary: |-
+  > [!CAUTION]
+  > This cmdlet has been deprecated and is no longer supported.  This cmdlet will be removed in the near future.
+  > 
+  > Please use [Get-CsAutoAttendantStatus](Get-CsAutoAttendantStatus.yml) cmdlet instead.
+
+  Use Get-CsOrganizationalAutoAttendantStatus cmdlet to get the status of an Auto Attendant (AA) provisioning.
+module: SkypeForBusiness
+notes: ""
+inputs:
+- name: <xref href="System.String" data-throw-if-not-resolved="False" />
+  description: |-
+    The Get-CsOrganizationalAutoAttendantStatus cmdlet accepts a string as the PrimaryUri parameter.
+outputs:
+- name: <xref href="Microsoft.Rtc.Management.OAA.Models.StatusRecord" data-throw-if-not-resolved="False" />
+  description: ""
+links:
+- text: Get-CsOrganizationalAutoAttendant
+  href: Get-CsOrganizationalAutoAttendant.yml
+syntaxes:
+- Get-CsOrganizationalAutoAttendantStatus [-PrimaryUri] <Uri> [-IncludeResources <List>] [-ApplicationId <Guid>] [-Tenant <Guid>] [<CommonParameters>]
+examples:
+- title: '-------------------------- Example 1 --------------------------'
+  code: |-
+    Get-CsOrganizationalAutoAttendantStatus -PrimaryUri "sip:mainoaa@contoso.com"
+  description: |-
+    In Example 1, the Get-CsOrganizationalAutoAttendantStatus cmdlet is used to get status records for all resources of an auto attendant with Primary URI of sip:mainoaa@contoso.com.
+  summary: ""
+- title: '-------------------------- Example 2 --------------------------'
+  code: |-
+    Get-CsOrganizationalAutoAttendantStatus -PrimaryUri sip:mainoaa@contoso.com -IncludeResources @("AudioFile")
+  description: |-
+    In Example 2, the Get-CsOrganizationalAutoAttendantStatus cmdlet is used to get status records pertaining to audio files only of an auto attendant with Primary URI of sip:mainoaa@contoso.com.
+  summary: ""
+parameters:
+- type: <xref href="System.Guid" data-throw-if-not-resolved="False" />
+  name: ApplicationId
+  description: |+
+    Specifies a custom application ID to use for auto attendants. This parameter is reserved for Microsoft internal use only.
+
+  defaultValue: None
+  position: Named
+  aliases: ""
+  applicable:
+  - Skype for Business Online
+  parameterValueGroup: ""
+- type: <xref href="System.Collections.Generic.List" data-throw-if-not-resolved="False" />
+  name: IncludeResources
+  description: |+
+    The IncludeResources parameter identities the auto attendant resources whose status is to be retrieved. Available resources are:
+    - AudioFile: Indicates status for audio files used by OAA.
+    - DialByNameVoiceResponses: Indicates status for speech recognition when using dial-by-name (directory lookup) feature with OAA.
+    - SipProvisioning: Indicates status for calling OAA through its SIP (Primary) URI.
+
+  defaultValue: None
+  position: Named
+  aliases: ""
+  applicable:
+  - Skype for Business Online
+  parameterValueGroup: AudioFile, DialByNameVoiceResponses, SipProvisioning
+- type: <xref href="System.Uri" data-throw-if-not-resolved="False" />
+  name: PrimaryUri
+  isRequired: true
+  description: |+
+    The Primary URI represents the SIP address of the auto attendant whose provisioning status is to be retrieved.
+
+  defaultValue: None
+  position: "0"
+  aliases: ""
+  applicable:
+  - Skype for Business Online
+  parameterValueGroup: ""
+- type: <xref href="System.Guid" data-throw-if-not-resolved="False" />
+  name: Tenant
+  description: ""
+  defaultValue: None
+  position: Named
+  aliases: ""
+  applicable:
+  - Skype for Business Online
+  parameterValueGroup: ""
+applicable:
+- Skype for Business Online
+uid: SkypeForBusiness.Get-CsOrganizationalAutoAttendantStatus
+name: Get-CsOrganizationalAutoAttendantStatus
+description: |-
+  This cmdlet provides a way to return the provisioning status of an auto attendant configured for use in your organization.
+metadata:
+  external help file: Microsoft.Rtc.Management.Hosted.dll-help.xml
+  online version: https://docs.microsoft.com/powershell/module/skype/get-csorganizationalautoattendantstatus
+  applicable: Skype for Business Online
+  title: Get-CsOrganizationalAutoAttendantStatus
+  schema: 2.0.0
+  manager: bulenteg
+  author: tomkau
+  ms.author: tomkau
+  ms.reviewer: ""

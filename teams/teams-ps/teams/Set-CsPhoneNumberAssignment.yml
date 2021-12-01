@@ -1,0 +1,119 @@
+### YamlMime:PowershellCmdlet
+summary: |-
+  This cmdlet will assign a phone number to a user or a resource account (online application instance).
+
+  > [!NOTE]
+  > **Preview** The use of this cmdlet is in Public Preview.
+module: MicrosoftTeamsPowerShell
+notes: |-
+  The cmdlet is available in Teams PS module 2.6.1-preview or later.
+inputs:
+- name: <xref href="None" data-throw-if-not-resolved="False" />
+  description: ""
+outputs:
+- name: <xref href="System.Object" data-throw-if-not-resolved="False" />
+  description: ""
+links:
+- text: Remove-CsPhoneNumberAssignment
+  href: Remove-CsPhoneNumberAssignment.yml
+syntaxes:
+- Set-CsPhoneNumberAssignment -Identity <String> -PhoneNumber <String> -PhoneNumberType <String> -LocationId <String> [<CommonParameters>]
+- Set-CsPhoneNumberAssignment -Identity <String> -EnterpriseVoice <Boolean> [<CommonParameters>]
+examples:
+- title: Example 1
+  code: |-
+    Set-CsPhoneNumberAssignment -Identity user1@contoso.com -PhoneNumber +12065551234 -PhoneNumberType CallingPlan
+  description: |-
+    This example assigns the Microsoft Calling Plan phone number +1 (206) 555-1234 to the user user1@contoso.com.
+  summary: ""
+- title: Example 2
+  code: |-
+    $loc=Get-CsOnlineLisLocation -City Vancouver
+    Set-CsPhoneNumberAssignment -Identity user2@contoso.com -PhoneNumber +12065551224 -PhoneNumberType CallingPlan -LocationId $loc.LocationId
+  description: |-
+    This example finds the emergency location defined for the corporate location Vancouver and assigns the Microsoft Calling Plan phone number +1 (206) 555-1224 and location 
+    to the user user2@contoso.com.
+  summary: ""
+- title: Example 3
+  code: |-
+    Set-CsPhoneNumberAssignment -Identity user3@contoso.com -EnterpriseVoiceEnabled $true
+  description: |-
+    This example sets the EnterpriseVoiceEnabled flag on the user user3@contoso.com.
+  summary: ""
+- title: Example 4
+  code: |-
+    Set-CsPhoneNumberAssignment -Identity user2@contoso.com -LocationId null -PhoneNumber +12065551224 -PhoneNumberType CallingPlan
+  description: |-
+    This example removes the emergency location from the phone number for user user2@contoso.com.
+  summary: ""
+parameters:
+- type: <xref href="System.Boolean" data-throw-if-not-resolved="False" />
+  name: EnterpriseVoiceEnabled
+  description: |+
+    Flag indicating if the user or resource account should be EnterpriseVoiceEnabled.
+
+    This parameter is mutual exclusive with PhoneNumber.
+
+  defaultValue: None
+  position: named
+  aliases: ""
+  applicable:
+  - Microsoft Teams
+  parameterValueGroup: ""
+- type: <xref href="System.String" data-throw-if-not-resolved="False" />
+  name: Identity
+  isRequired: true
+  description: |+
+    The Id of the specific user or resource account. Can be specified using the ObjectId, the SIP address or the e-mail address.
+
+  defaultValue: None
+  position: named
+  aliases: ""
+  parameterValueGroup: ""
+- type: <xref href="System.String" data-throw-if-not-resolved="False" />
+  name: LocationId
+  description: |+
+    The Id of the location to assign to the specific user. You can get it using Get-CsOnlineLisLocation. If you want to remove the location, use
+    the string value null.
+
+  defaultValue: None
+  position: named
+  aliases: ""
+  parameterValueGroup: ""
+- type: <xref href="System.String" data-throw-if-not-resolved="False" />
+  name: PhoneNumber
+  description: |+
+    The phone number to assign to the user or resource account. Supports E.164 format like +12065551234 and non-E.164 format like 12065551234. We are also supporting
+    Direct Routing numbers with extensions using the formats +1206555000;ext=1234 or 1206555000;ext=1234
+
+    Setting a phone number will automatically set EnterpriseVoiceEnabled to True.
+
+  defaultValue: None
+  position: named
+  aliases: ""
+  parameterValueGroup: ""
+- type: <xref href="System.String" data-throw-if-not-resolved="False" />
+  name: PhoneNumberType
+  description: |+
+    The type of phone number to assign to the user or resource account. The supported values are DirectRouting, CallingPlan and OperatorConnect.
+
+  defaultValue: None
+  position: named
+  aliases: ""
+  parameterValueGroup: ""
+applicable:
+- Microsoft Teams
+uid: MicrosoftTeamsPowerShell.Set-CsPhoneNumberAssignment
+name: Set-CsPhoneNumberAssignment
+description: |-
+  This cmdlet assigns a phone number to a user or resource account.
+metadata:
+  external help file: Microsoft.Open.Teams.CommonLibrary.dll-Help.xml
+  Module Name: MicrosoftTeams
+  online version: https://docs.microsoft.com/powershell/module/teams/set-csphonenumberassignment
+  applicable: Microsoft Teams
+  author: jenstrier
+  ms.author: jenstr
+  ms.reviewer: ""
+  manager: ""
+  schema: 2.0.0

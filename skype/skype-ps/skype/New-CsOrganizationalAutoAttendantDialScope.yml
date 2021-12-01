@@ -1,0 +1,82 @@
+### YamlMime:PowershellCmdlet
+summary: |-
+  > [!CAUTION]
+  > This cmdlet has been deprecated and is no longer supported.  This cmdlet will be removed in the near future.
+  > 
+  > Please use [New-CsAutoAttendantDialScope](New-CsAutoAttendantDialScope.yml) cmdlet instead.
+
+
+  Use New-CsOrganizationalAutoAttendantDialScope cmdlet to create dial-scopes for use with Auto Attendant (AA) service.
+module: SkypeForBusiness
+notes: ""
+inputs:
+- name: <xref href="None" data-throw-if-not-resolved="False" />
+  description: ""
+outputs:
+- name: <xref href="Microsoft.Rtc.Management.OAA.Models.DialScope" data-throw-if-not-resolved="False" />
+  description: ""
+syntaxes:
+- New-CsOrganizationalAutoAttendantDialScope -GroupScope -GroupIds <List> [-Tenant <Guid>] [<CommonParameters>]
+examples:
+- title: '-------------------------- Example 1 --------------------------'
+  code: |-
+    $groupIds = @("00000000-0000-0000-0000-000000000000")
+    $dialScope = New-CsOrganizationalAutoAttendantDialScope -GroupScope -GroupIds $groupIds
+  description: |-
+    In Example 1, the New-CsOrganizationalAutoAttendantDialScope cmdlet is used to create a dial-scope with a group whose id is 00000000-0000-0000-0000-000000000000.
+  summary: ""
+parameters:
+- type: <xref href="System.Collections.Generic.List" data-throw-if-not-resolved="False" />
+  name: GroupIds
+  isRequired: true
+  description: |+
+    Refers to the IDs of the groups that are to be included in the dial-scope.
+
+    Group IDs can be obtained by using the Find-CsGroup cmdlet. 
+
+  defaultValue: None
+  position: Named
+  aliases: ""
+  applicable:
+  - Skype for Business Online
+  parameterValueGroup: ""
+- type: <xref href="SwitchParameter" data-throw-if-not-resolved="False" />
+  name: GroupScope
+  isRequired: true
+  description: |+
+    Indicates that a dial-scope based on groups (distribution lists, security groups) is to be created.
+
+  defaultValue: None
+  position: Named
+  aliases: ""
+  applicable:
+  - Skype for Business Online
+  parameterValueGroup: ""
+- type: <xref href="System.Guid" data-throw-if-not-resolved="False" />
+  name: Tenant
+  description: ""
+  defaultValue: None
+  position: Named
+  aliases: ""
+  applicable:
+  - Skype for Business Online
+  parameterValueGroup: ""
+applicable:
+- Skype for Business Online
+uid: SkypeForBusiness.New-CsOrganizationalAutoAttendantDialScope
+name: New-CsOrganizationalAutoAttendantDialScope
+description: |-
+  This cmdlet creates a new dial-scope to be used with Auto Attendant (AA) service. OAAs use dial-scopes to restrict the scope of call transfers that can be made through directory lookup feature. 
+
+  **NOTE**
+  - The returned dial-scope model composes a member for the underlying type/implementation, e.g. in case of the group-based dial scope, in order to modify its Group IDs, you can access them through `DialScope.GroupScope.GroupIds`.
+metadata:
+  external help file: Microsoft.Rtc.Management.Hosted.dll-help.xml
+  online version: https://docs.microsoft.com/powershell/module/skype/new-csorganizationalautoattendantdialscope
+  applicable: Skype for Business Online
+  title: New-CsOrganizationalAutoAttendantDialScope
+  schema: 2.0.0
+  manager: bulenteg
+  author: tomkau
+  ms.author: tomkau
+  ms.reviewer: ""

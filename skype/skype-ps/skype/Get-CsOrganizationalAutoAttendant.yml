@@ -1,0 +1,133 @@
+### YamlMime:PowershellCmdlet
+summary: |-
+  > [!CAUTION]
+  > This cmdlet has been deprecated and is no longer supported.  This cmdlet will be removed in the near future.
+  > 
+  > Please use [Get-CsAutoAttendant](Get-CsAutoAttendant.yml) cmdlet instead.
+
+  Use the Get-CsOrganizationalAutoAttendant cmdlet to get information about Auto Attendants (AAs).
+module: SkypeForBusiness
+notes: ""
+inputs:
+- name: <xref href="String" data-throw-if-not-resolved="False" />
+  description: |-
+    The String is used as the PrimaryUri input.
+outputs:
+- name: <xref href="Microsoft.Rtc.Management.Hosted.OAA.Models.OrgAutoAttendant" data-throw-if-not-resolved="False" />
+  description: ""
+links:
+- text: New-CsOrganizationalAutoAttendant
+  href: New-CsOrganizationalAutoAttendant.yml
+- text: Set-CsOrganizationalAutoAttendant
+  href: Set-CsOrganizationalAutoAttendant.yml
+- text: Remove-CsOrganizationalAutoAttendant
+  href: Remove-CsOrganizationalAutoAttendant.yml
+syntaxes:
+- Get-CsOrganizationalAutoAttendant [-PrimaryUri] <Uri> [-First <UInt64>] [-Skip <UInt64>] [-IncludeStatus] [-ApplicationId <Guid>] [-Tenant <Guid>] [<CommonParameters>]
+examples:
+- title: '-------------------------- Example 1 --------------------------'
+  code: |-
+    Get-CsOrganizationalAutoAttendant
+  description: |-
+    This example gets all OAAs in the organization.
+  summary: ""
+- title: '-------------------------- Example 2 --------------------------'
+  code: |-
+    Get-CsOrganizationalAutoAttendant -PrimaryUri sip:mainoaa@contoso.com
+  description: |-
+    This example gets the OAAs that has the Primary URI of sip:mainoaa@contoso.com.
+  summary: ""
+- title: '-------------------------- Example 3 --------------------------'
+  code: |-
+    Get-CsOrganizationalAutoAttendant -First 10
+  description: |-
+    This example gets the first ten auto attendants configured for use in the organization.
+  summary: ""
+- title: '-------------------------- Example 4 --------------------------'
+  code: |-
+    Get-CsOrganizationalAutoAttendant -Skip 5 -First 10
+  description: |-
+    This example skips initial 5 auto attendants and gets the next 10 OAAs configured for use in the organization.
+  summary: ""
+parameters:
+- type: <xref href="System.Guid" data-throw-if-not-resolved="False" />
+  name: ApplicationId
+  description: |+
+    Specifies a custom application ID to use for auto attendants. This parameter is reserved for Microsoft internal use only.
+
+  defaultValue: None
+  position: Named
+  aliases: ""
+  applicable:
+  - Skype for Business Online
+  parameterValueGroup: ""
+- type: <xref href="System.UInt64" data-throw-if-not-resolved="False" />
+  name: First
+  description: |+
+    The First parameter indicates the maximum number of auto attendants to retrieve as the result. It is intended to be used for pagination purposes.
+
+  defaultValue: None
+  position: Named
+  aliases: ""
+  applicable:
+  - Skype for Business Online
+  parameterValueGroup: ""
+- type: <xref href="SwitchParameter" data-throw-if-not-resolved="False" />
+  name: IncludeStatus
+  description: |+
+    If specified, the status records for each auto attendant in the result set are also retrieved.
+
+  defaultValue: None
+  position: Named
+  aliases: ""
+  applicable:
+  - Skype for Business Online
+  parameterValueGroup: ""
+- type: <xref href="System.Uri" data-throw-if-not-resolved="False" />
+  name: PrimaryUri
+  isRequired: true
+  description: |+
+    The PrimaryUri parameter represents the SIP address for the OAA to be retrieved. If this parameter is not specified, then all created OAAs in the organization are returned.
+
+  defaultValue: None
+  position: "1"
+  aliases: ""
+  applicable:
+  - Skype for Business Online
+  parameterValueGroup: ""
+- type: <xref href="System.UInt64" data-throw-if-not-resolved="False" />
+  name: Skip
+  description: |+
+    The Skip parameter indicates the number of initial auto attendants to skip in the result. It is intended to be used for pagination purposes.
+
+  defaultValue: None
+  position: Named
+  aliases: ""
+  applicable:
+  - Skype for Business Online
+  parameterValueGroup: ""
+- type: <xref href="System.Guid" data-throw-if-not-resolved="False" />
+  name: Tenant
+  description: ""
+  defaultValue: None
+  position: Named
+  aliases: ""
+  applicable:
+  - Skype for Business Online
+  parameterValueGroup: ""
+applicable:
+- Skype for Business Online
+uid: SkypeForBusiness.Get-CsOrganizationalAutoAttendant
+name: Get-CsOrganizationalAutoAttendant
+description: |-
+  The Get-CsOrganizationalAutoAttendant cmdlet returns information about the OAAs in your organization.
+metadata:
+  external help file: Microsoft.Rtc.Management.Hosted.dll-help.xml
+  online version: https://docs.microsoft.com/powershell/module/skype/get-csorganizationalautoattendant
+  applicable: Skype for Business Online
+  title: Get-CsOrganizationalAutoAttendant
+  schema: 2.0.0
+  manager: bulenteg
+  author: tomkau
+  ms.author: tomkau
+  ms.reviewer: ""

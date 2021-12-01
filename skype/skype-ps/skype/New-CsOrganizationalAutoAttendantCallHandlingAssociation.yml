@@ -1,0 +1,150 @@
+### YamlMime:PowershellCmdlet
+summary: |-
+  > [!CAUTION]
+  > This cmdlet has been deprecated and is no longer supported.  This cmdlet will be removed in the near future.
+  > 
+  > Please use [New-CsAutoAttendantCallHandlingAssociation](New-CsAutoAttendantCallHandlingAssociation.yml) cmdlet instead.
+
+  Use the New-CsOrganizationalAutoAttendantCallHandlingAssociation cmdlet to create a new call handling association.
+module: SkypeForBusiness
+notes: ""
+inputs:
+- name: <xref href="None" data-throw-if-not-resolved="False" />
+  description: ""
+outputs:
+- name: <xref href="Microsoft.Rtc.Management.OAA.Models.CallHandlingAssociation" data-throw-if-not-resolved="False" />
+  description: ""
+links:
+- text: New-CsOrganizationalAutoAttendantCallFlow
+  href: New-CsOrganizationalAutoAttendantCallFlow.yml
+- text: New-CsOnlineSchedule
+  href: New-CsOnlineSchedule.yml
+syntaxes:
+- New-CsOrganizationalAutoAttendantCallHandlingAssociation -CallFlowId <String> -ScheduleId <String> -Type <AfterHours | Holiday> [-Disable] [-Tenant <Guid>] [<CommonParameters>]
+examples:
+- title: '-------------------------- Example 1 --------------------------'
+  code: |-
+    $tr = New-CsOnlineTimeRange -Start 09:00 -End 17:00
+    $schedule = New-CsOnlineSchedule -Name "Business Hours" -WeeklyRecurrentSchedule -MondayHours @($tr)
+    $scheduleId = $schedule.Id
+
+    $menuPrompt = New-CsOrganizationalAutoAttendantPrompt -TextToSpeechPrompt "To reach your party by name, enter it now, followed by the pound sign."
+    $menu = New-CsOrganizationalAutoAttendantMenu -Name "Default Menu" -Prompts $menuPrompt -EnableDialByName 
+    $callFlow = New-CsOrganizationalAutoAttendantCallFlow -Name "Default Call Flow" -Menu $menu
+    $callFlowId = $callFlow.Id
+
+    $callHandlingAssociation = New-CsOrganizationalAutoAttendantCallHandlingAssociation -Type AfterHours -ScheduleId $scheduleId -CallFlowId $callFlowId
+  description: |-
+    This example creates a new after-hours call handling association.
+  summary: ""
+- title: '-------------------------- Example 2 --------------------------'
+  code: |-
+    $tr = New-CsOnlineTimeRange -Start 09:00 -End 17:00
+    $schedule = New-CsOnlineSchedule -Name "Business Hours" -WeeklyRecurrentSchedule -MondayHours @($tr)
+    $scheduleId = $schedule.Id
+
+    $menuPrompt = New-CsOrganizationalAutoAttendantPrompt -TextToSpeechPrompt "To reach your party by name, enter it now, followed by the pound sign."
+    $menu = New-CsOrganizationalAutoAttendantMenu -Name "Default Menu" -Prompts $menuPrompt -EnableDialByName 
+    $callFlow = New-CsOrganizationalAutoAttendantCallFlow -Name "Default Call Flow" -Menu $menu
+    $callFlowId = $callFlow.Id
+
+    $disabledCallHandlingAssociation = New-CsOrganizationalAutoAttendantCallHandlingAssociation -Type AfterHours -ScheduleId $scheduleId -CallFlowId $callFlowId -Disable
+  description: |-
+    This example creates a disabled after-hours call handling association.
+  summary: ""
+- title: '-------------------------- Example 3 --------------------------'
+  code: |-
+    $dtr = New-CsOnlineDateTimeRange -Start "24/12/2017"
+    $schedule = New-CsOnlineSchedule -Name "Christmas" -FixedSchedule -DateTimeRanges @($dtr)
+    $scheduleId = $schedule.Id
+
+    $menuPrompt = New-CsOrganizationalAutoAttendantPrompt -TextToSpeechPrompt "We are closed for Christmas. Please call back later."
+    $menuOption = New-CsOrganizationalAutoAttendantMenuOption -DtmfResponse Automatic -Action DisconnectCall
+    $menu = New-CsOrganizationalAutoAttendantMenu -Name "Christmas Menu" -MenuOptions @($menuOption)
+    $callFlow = New-CsOrganizationalAutoAttendantCallFlow -Name "Christmas" -Greetings @($greeting) -Menu $menu
+    $callFlowId = $callFlow.Id
+
+    $callHandlingAssociation = New-CsOrganizationalAutoAttendantCallHandlingAssociation -Type Holiday -ScheduleId $scheduleId -CallFlowId $callFlowId
+  description: |-
+    This example creates a holiday call handling association.
+  summary: ""
+parameters:
+- type: <xref href="System.String" data-throw-if-not-resolved="False" />
+  name: CallFlowId
+  isRequired: true
+  description: |+
+    The CallFlowId parameter represents the call flow to be associated with the schedule. 
+
+    You can create a call flow by using the New-CsOrganizationalAutoAttendantCallFlow cmdlet.
+
+
+  defaultValue: None
+  position: Named
+  aliases: ""
+  applicable:
+  - Skype for Business Online
+  parameterValueGroup: ""
+- type: <xref href="SwitchParameter" data-throw-if-not-resolved="False" />
+  name: Disable
+  description: |+
+    The Disable parameter, if set, establishes that the call handling association is created as disabled. This parameter can only be used when the Type parameter is set to AfterHours.
+
+  defaultValue: None
+  position: Named
+  aliases: ""
+  applicable:
+  - Skype for Business Online
+  parameterValueGroup: ""
+- type: <xref href="System.String" data-throw-if-not-resolved="False" />
+  name: ScheduleId
+  isRequired: true
+  description: |+
+    The ScheduleId parameter represents the schedule to be associated with the call flow. 
+
+    You can create a schedule by using the New-CsOnlineSchedule cmdlet 
+
+
+  defaultValue: None
+  position: Named
+  aliases: ""
+  applicable:
+  - Skype for Business Online
+  parameterValueGroup: ""
+- type: <xref href="System.Guid" data-throw-if-not-resolved="False" />
+  name: Tenant
+  description: ""
+  defaultValue: None
+  position: Named
+  aliases: ""
+  applicable:
+  - Skype for Business Online
+  parameterValueGroup: ""
+- type: <xref href="Object" data-throw-if-not-resolved="False" />
+  name: Type
+  isRequired: true
+  description: |+
+    The Type parameter represents the type of the call handling association. Currently, only AfterHours and Holiday are supported. 
+
+
+  defaultValue: None
+  position: Named
+  aliases: ""
+  applicable:
+  - Skype for Business Online
+  parameterValueGroup: ""
+applicable:
+- Skype for Business Online
+uid: SkypeForBusiness.New-CsOrganizationalAutoAttendantCallHandlingAssociation
+name: New-CsOrganizationalAutoAttendantCallHandlingAssociation
+description: |-
+  The New-CsOrganizationalAutoAttendantCallHandlingAssociation cmdlet creates a new call handling association to be used with the Auto Attendant (AA) service. The OAA service uses call handling associations to determine which call flow to execute when a specific schedule is in effect.
+metadata:
+  external help file: Microsoft.Rtc.Management.Hosted.dll-help.xml
+  online version: https://docs.microsoft.com/powershell/module/skype/new-csorganizationalautoattendantcallhandlingassociation
+  applicable: Skype for Business Online
+  title: New-CsOrganizationalAutoAttendantCallHandlingAssociation
+  schema: 2.0.0
+  manager: bulenteg
+  author: tomkau
+  ms.author: tomkau
+  ms.reviewer: ""

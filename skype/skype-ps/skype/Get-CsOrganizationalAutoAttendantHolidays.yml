@@ -1,0 +1,109 @@
+### YamlMime:PowershellCmdlet
+summary: |-
+  > [!CAUTION]
+  > This cmdlet has been deprecated and is no longer supported.  This cmdlet will be removed in the near future.
+  > 
+  > Please use [Get-CsAutoAttendantHolidays](Get-CsAutoAttendantHolidays.yml) cmdlet instead.
+
+  Use Get-CsOrganizationalAutoAttendantHolidays cmdlet to get the holiday information for an existing Auto Attendant (AA).
+module: SkypeForBusiness
+notes: ""
+inputs:
+- name: <xref href="String" data-throw-if-not-resolved="False" />
+  description: |-
+    The String is used as the PrimaryUri input.
+outputs:
+- name: <xref href="Microsoft.Rtc.Management.OAA.Models.HolidayVisRecord" data-throw-if-not-resolved="False" />
+  description: ""
+links:
+- text: Import-CsOrganizationalAutoAttendantHolidays
+  href: Import-CsOrganizationalAutoAttendantHolidays.yml
+- text: Export-CsOrganizationalAutoAttendantHolidays
+  href: Export-CsOrganizationalAutoAttendantHolidays.yml
+syntaxes:
+- Get-CsOrganizationalAutoAttendantHolidays [-PrimaryUri] <Uri> [-Years <List>] [-Names <List>] [-Tenant <Guid>] [<CommonParameters>]
+examples:
+- title: '-------------------------- Example 1 --------------------------'
+  code: |-
+    Get-CsOrganizationalAutoAttendantHolidays -PrimaryUri "sip:mainoaa@contoso.com"
+  description: |-
+    In this example, the Get-CsOrganizationalAutoAttendantHolidays cmdlet is used to get all holidays in an auto attendant with Primary URI of sip:mainoaa@contoso.com.
+  summary: ""
+- title: '-------------------------- Example 2 --------------------------'
+  code: |-
+    Get-CsOrganizationalAutoAttendantHolidays -PrimaryUri "sip:mainoaa@contoso.com" -Years @(2017)
+  description: |-
+    In this example, the Get-CsOrganizationalAutoAttendantHolidays cmdlet is used to get all holidays in year 2017 in an auto attendant with Primary URI of sip:mainoaa@contoso.com.
+  summary: ""
+- title: '-------------------------- Example 3 --------------------------'
+  code: |-
+    Get-CsOrganizationalAutoAttendantHolidays -PrimaryUri "sip:mainoaa@contoso.com" -Years @(2017) -Name @("Christmas")
+  description: |-
+    In this example, the Get-CsOrganizationalAutoAttendantHolidays cmdlet is used to get holiday named Christmas in the year 2017 in an auto attendant with Primary URI of sip:mainoaa@contoso.com.
+  summary: ""
+- title: '-------------------------- Example 4 --------------------------'
+  code: |-
+    Get-CsOrganizationalAutoAttendantHolidays -PrimaryUri "sip:mainoaa@contoso.com" | Format-Table -Wrap -AutoSize
+  description: |-
+    In this example, the Get-CsOrganizationalAutoAttendantHolidays cmdlet is used to retrieve all holidays in an auto attendant with Primary URI of sip:mainoaa@contoso.com and the result is formatted as a table.
+  summary: ""
+parameters:
+- type: <xref href="System.Collections.Generic.List" data-throw-if-not-resolved="False" />
+  name: Names
+  description: |+
+    The Names parameter represents the names for the holidays to be retrieved. If this parameter is not specified, then all holidays in the OAA are returned.
+
+  defaultValue: None
+  position: Named
+  aliases: ""
+  applicable:
+  - Skype for Business Online
+  parameterValueGroup: ""
+- type: <xref href="System.Uri" data-throw-if-not-resolved="False" />
+  name: PrimaryUri
+  isRequired: true
+  description: |+
+    The PrimaryUri parameter represents the SIP address of the auto attendant whose holidays are to be retrieved.
+
+  defaultValue: None
+  position: "1"
+  aliases: ""
+  applicable:
+  - Skype for Business Online
+  parameterValueGroup: ""
+- type: <xref href="System.Guid" data-throw-if-not-resolved="False" />
+  name: Tenant
+  description: ""
+  defaultValue: None
+  position: Named
+  aliases: ""
+  applicable:
+  - Skype for Business Online
+  parameterValueGroup: ""
+- type: <xref href="System.Collections.Generic.List" data-throw-if-not-resolved="False" />
+  name: Years
+  description: |+
+    The Years parameter represents the years for the holidays to be retrieved. If this parameter is not specified, then holidays for all years in the OAA are returned.
+
+  defaultValue: None
+  position: Named
+  aliases: ""
+  applicable:
+  - Skype for Business Online
+  parameterValueGroup: ""
+applicable:
+- Skype for Business Online
+uid: SkypeForBusiness.Get-CsOrganizationalAutoAttendantHolidays
+name: Get-CsOrganizationalAutoAttendantHolidays
+description: |-
+  The Get-CsOrganizationalAutoAttendantHolidays provides a convenient way to visualize the information of all the holidays contained within an auto attendant.
+metadata:
+  external help file: Microsoft.Rtc.Management.Hosted.dll-help.xml
+  online version: https://docs.microsoft.com/powershell/module/skype/get-csorganizationalautoattendantholidays
+  applicable: Skype for Business Online
+  title: Get-CsOrganizationalAutoAttendantHolidays
+  schema: 2.0.0
+  manager: bulenteg
+  author: tomkau
+  ms.author: tomkau
+  ms.reviewer: ""

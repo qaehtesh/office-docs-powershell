@@ -1,0 +1,239 @@
+### YamlMime:PowershellCmdlet
+summary: |-
+  Returns information about users who have accounts homed on Microsoft Teams or Skype for Business Online.
+module: SkypeForBusiness
+notes: ""
+inputs:
+- name: <xref href="Microsoft.Rtc.Management.ADConnect.Schema.OCSADUser or String" data-throw-if-not-resolved="False" />
+  description: |-
+    A String must represent a valid user account Identity (for example, "sip:kenmyer@litwareinc.com").
+outputs:
+- name: <xref href="Microsoft.Rtc.Management.ADConnect.Schema.ADOCOnlineUser" data-throw-if-not-resolved="False" />
+  description: ""
+links:
+- text: Set-CsUser
+  href: Set-CsUser.yml
+syntaxes:
+- >-
+  Get-CsOnlineUser [-Filter <String>] [-LdapFilter <String>] [-OnOfficeCommunicationServer] [-OnModernServer]
+
+   [-UnassignedUser] [-SkipUserPolicies] [-OU <OUIdParameter>] [-DomainController <Fqdn>]
+
+   [-Credential <PSCredential>] [[-Identity] <UserIdParameter>] [-ResultSize <>] [<CommonParameters>]
+examples:
+- title: '-------------------------- Example 1 --------------------------'
+  code: |-
+    Get-CsOnlineUser
+  description: |-
+    The command shown in Example 1 returns information for all the users configured as online users.
+  summary: ""
+- title: '-------------------------- Example 2 --------------------------'
+  code: |-
+    Get-CsOnlineUser -Identity "sip:kenmyer@litwareinc.com"
+  description: |-
+    In Example 2 information is returned for a single online user: the user with the SIP address "sip:kenmyer@litwareinc.com".
+  summary: ""
+- title: '-------------------------- Example 3 --------------------------'
+  code: |-
+    Get-CsOnlineUser -Filter {ArchivingPolicy -eq "RedmondArchiving"}
+  description: |-
+    Example 3 uses the Filter parameter to limit the returned data to online users who have been assigned the per-user archiving policy RedmondArchiving.
+    To do this, the filter value {ArchivingPolicy -eq "RedmondArchiving"} is employed; that syntax limits returned data to users where the ArchivingPolicy property is equal to (-eq) "RedmondArchiving".
+  summary: ""
+- title: '-------------------------- Example 4 --------------------------'
+  code: |-
+    Get-CsOnlineUser -Filter {HideFromAddressLists -eq $True}
+  description: |-
+    Example 4 returns information only for user accounts that have been configured so that the account does not appear in Microsoft Exchange address lists.
+    (That is, the Active Directory attribute msExchHideFromAddressLists is True.) To carry out this task, the Filter parameter is included along with the filter value {HideFromAddressLists -eq $True}.
+  summary: ""
+- title: '-------------------------- Example 5 --------------------------'
+  code: |-
+    Get-CsOnlineUser -Filter {TenantId -eq "bf19b7db-6960-41e5-a139-2aa373474354"}
+  description: |-
+    The command shown in Example 5 returns information for all the online users assigned to the tenant with the TenantID "bf19b7db-6960-41e5-a139-2aa373474354".
+    To accomplish the task, the command includes the Filter parameter along with the filter value {TenantId -eq "bf19b7db-6960-41e5-a139-2aa373474354"}.
+    This filter limits the returned data to online users assigned to the tenant "bf19b7db-6960-41e5-a139-2aa373474354".
+  summary: ""
+- title: '-------------------------- Example 6 --------------------------'
+  code: |-
+    PS C:\> $MeetingPolicy="Kiosk"
+    PS C:\> $filterString = 'TeamsMeetingPolicy -eq "{0}"' -f $MeetingPolicy
+    PS C:\> Get-CsOnlineUser -Filter $filterString
+  description: |-
+    The commands shown in Example 6 filters all the online users with a certain TeamsMeetingPolicy assigned using a variable as filter input.
+    To accomplish the task, the filter string is first constructed and resolved locally and then used by the Get-CsOnlineUser cmdlet.
+  summary: ""
+parameters:
+- type: <xref href="PSCredential" data-throw-if-not-resolved="False" />
+  name: Credential
+  description: |+
+    This parameter is not used with Skype for Business Online and will be deprecated in the near future.
+
+  defaultValue: None
+  position: Named
+  aliases: ""
+  applicable:
+  - Microsoft Teams
+  - Skype for Business Online
+  parameterValueGroup: ""
+- type: <xref href="Fqdn" data-throw-if-not-resolved="False" />
+  name: DomainController
+  description: |+
+    This parameter is not used with Skype for Business Online and will be deprecated in the near future.
+
+  defaultValue: None
+  position: Named
+  aliases: ""
+  applicable:
+  - Microsoft Teams
+  - Skype for Business Online
+  parameterValueGroup: ""
+- type: <xref href="String" data-throw-if-not-resolved="False" />
+  name: Filter
+  description: |+
+    Enables you to limit the returned data by filtering on specific attributes.
+    For example, you can limit returned data to users who have been assigned a specific voice policy, or users who have not been assigned a specific voice policy.
+
+    The Filter parameter uses the same filtering syntax that is used by the Where-Object cmdlet.
+    For example, a filter that returns only users who have been enabled for Enterprise Voice would look like this, with EnterpriseVoiceEnabled representing the Active Directory attribute, -eq representing the comparison operator (equal to), and $True (a built-in Windows PowerShell variable) representing the filter value:
+
+    `{EnterpriseVoiceEnabled -eq $True}`
+
+  defaultValue: None
+  position: Named
+  aliases: ""
+  applicable:
+  - Microsoft Teams
+  - Skype for Business Online
+  parameterValueGroup: ""
+- type: <xref href="UserIdParameter" data-throw-if-not-resolved="False" />
+  name: Identity
+  description: |+
+    Indicates the Identity of the user account to be retrieved.
+    User Identities can be specified using one of the following formats: 1) the user's SIP address; 2) the user's user principal name (UPN); or, 3) the user's Active Directory display name (for example, Ken Myer).
+
+    You can use the asterisk ( * ) wildcard character when using the Display Name as the user Identity.
+    For example, the Identity "* Smith" returns all the users who have a display name that ends with the string value " Smith". 
+
+    Note that in Microsoft Teams PowerShell Version 2.5.1, using this parameter will cause the Get-CsOnlineUser command to no longer emit deprecated properties as part of the modernization effort.
+
+  defaultValue: None
+  position: "1"
+  aliases: ""
+  applicable:
+  - Microsoft Teams
+  - Skype for Business Online
+  parameterValueGroup: ""
+- type: <xref href="String" data-throw-if-not-resolved="False" />
+  name: LdapFilter
+  description: |+
+    Enables you to limit the returned data by filtering on generic Active Directory attributes (that is, attributes that are not specific to Microsoft Teams or Skype for Business).
+    For example, you can limit returned data to users who work in a specific department, or users who have a specified manager or job title.
+
+    The LdapFilter parameter uses the LDAP query language when creating filters.
+    For example, a filter that returns only users who work in the city of Redmond would look like this: "l=Redmond", with "l" (a lowercase L) representing the Active Directory attribute (locality); "=" representing the comparison operator (equal to); and "Redmond" representing the filter value.
+
+  defaultValue: None
+  position: Named
+  aliases: ""
+  applicable:
+  - Microsoft Teams
+  - Skype for Business Online
+  parameterValueGroup: ""
+- type: <xref href="SwitchParameter" data-throw-if-not-resolved="False" />
+  name: OnModernServer
+  description: |+
+    When present, the cmdlet returns a collection of users homed on Microsoft Teams or Skype for Business.
+    Users with accounts on previous versions of the software will not be returned when you use this parameter.
+
+  defaultValue: None
+  position: Named
+  aliases: OnLyncServer
+  applicable:
+  - Microsoft Teams
+  - Skype for Business Online
+  parameterValueGroup: ""
+- type: <xref href="SwitchParameter" data-throw-if-not-resolved="False" />
+  name: OnOfficeCommunicationServer
+  description: |+
+    This parameter is not used with Skype for Business Online and will be deprecated in the near future.
+
+  defaultValue: None
+  position: Named
+  aliases: ""
+  applicable:
+  - Microsoft Teams
+  - Skype for Business Online
+  parameterValueGroup: ""
+- type: <xref href="OUIdParameter" data-throw-if-not-resolved="False" />
+  name: OU
+  description: |+
+    This parameter is not used with Skype for Business Online and will be deprecated in the near future.
+
+  defaultValue: None
+  position: Named
+  aliases: ""
+  applicable:
+  - Microsoft Teams
+  - Skype for Business Online
+  parameterValueGroup: ""
+- type: <xref href="Int32" data-throw-if-not-resolved="False" />
+  name: ResultSize
+  description: |+
+    Enables you to limit the number of records returned by the cmdlet.
+    For example, to return seven users (regardless of the number of users that are in your forest) include the ResultSize parameter and set the parameter value to 7.
+    Note that there is no way to guarantee which seven users will be returned.
+
+    The result size can be set to any whole number between 0 and 2147483647, inclusive.
+    If set to 0 the command will run, but no data will be returned.
+    If you set the ResultSize to 7 but you have only three users in your forest, the command will return those three users, and then complete without error.
+
+  defaultValue: None
+  position: Named
+  aliases: ""
+  applicable:
+  - Microsoft Teams
+  - Skype for Business Online
+  parameterValueGroup: ""
+- type: <xref href="SwitchParameter" data-throw-if-not-resolved="False" />
+  name: SkipUserPolicies
+  description: |+
+    PARAMVALUE: SwitchParameter
+
+  defaultValue: None
+  position: Named
+  aliases: ""
+  applicable:
+  - Microsoft Teams
+  - Skype for Business Online
+  parameterValueGroup: ""
+- type: <xref href="SwitchParameter" data-throw-if-not-resolved="False" />
+  name: UnassignedUser
+  description: |+
+    Enables you to return a collection of all the users who have been enabled for Skype for Business but are not currently assigned to a Registrar pool.
+    Users are not allowed to log on to unless they are assigned to a Registrar pool.
+
+  defaultValue: None
+  position: Named
+  aliases: ""
+  applicable:
+  - Microsoft Teams
+  - Skype for Business Online
+  parameterValueGroup: ""
+applicable:
+- Microsoft Teams
+- Skype for Business Online
+uid: SkypeForBusiness.Get-CsOnlineUser
+name: Get-CsOnlineUser
+description: "The Get-CsOnlineUser cmdlet returns information about users who have accounts homed on Microsoft Teams or Skype for Business Online.\r\nThe returned information includes standard Active Directory account information (such as the department the user works in, his or her address and phone number, etc.) as well as Skype for Business Server 2015 specific information: the Get-CsOnlineUser cmdlet returns information about such things as whether or not the user has been enabled for Enterprise Voice and which per-user policies (if any) have been assigned to the user.\r\n\r\nNote that the Get-CsOnlineUser cmdlet does not have a TenantId parameter; that means you cannot use a command similar to this in order to limit the returned data to users who have accounts with a specific Microsoft Teams or Skype for Business Online tenant:\r\n\r\n`Get-CsOnlineUser -TenantId \"bf19b7db-6960-41e5-a139-2aa373474354\"`\r\n\r\nHowever, if you have multiple you can return users from a specified tenant by using the Filter parameter and a command similar to this:\r\n\r\n`Get-CsOnlineUser -Filter {TenantId -eq \"bf19b7db-6960-41e5-a139-2aa373474354\"}`\r\n\r\nThat command will limit the returned data to user accounts belong to the tenant with the TenantId \"bf19b7db-6960-41e5-a139-2aa373474354\".\r\nIf you do not know your tenant IDs you can return that information by using this command:\r\n\r\n`Get-CsTenant`\r\n\r\nIf you have a hybrid or \"split domain\" deployment (that is, a deployment in which some users have accounts homed on Skype for Business Online while other users have accounts homed on an on-premises version of Skype for Business Server 2015) keep in mind that the Get-CsOnlineUser cmdlet only returns information for Skype for Business Online users.\r\nHowever, the cmdlet will return information for both online users and on-premises users.\r\nIf you want to exclude Skype for Business Online users from the data returned by the Get-CsUser cmdlet, use the following command:\r\n\r\n`Get-CsUser -Filter {TenantId -eq \"00000000-0000-0000-0000-000000000000\"}`\r\n\r\nBy definition, users homed on the on-premises version will always have a TenantId equal to 00000000-0000-0000-0000-000000000000.\r\nUsers homed on Skype for Business Online will a TenantId that is equal to some value other than 00000000-0000-0000-0000-000000000000.\r\n\r\n**Note:**\r\n\r\nBeginning Microsoft Teams PowerShell version 2.6.2 onwards, the below updates are applicable for TeamsOnly customers.\r\n\r\n*Deprecated Attributes* - Theses are no longer relevant to Teams\r\n\r\n- AcpInfo\r\n- AdminDescription\r\n- ArchivingPolicy\r\n- AudioVideoDisabled\r\n- BaseSimpleUrl\r\n- BroadcastMeetingPolicy\r\n- CallViaWorkPolicy\r\n- ClientPolicy\r\n- ClientUpdateOverridePolicy\r\n- ClientVersionPolicy\r\n- CloudMeetingOpsPolicy\r\n- CloudMeetingPolicy\r\n- CloudVideoInteropPolicy\r\n- ContactOptionFlags\r\n- CountryOrRegionDisplayName\r\n- Description\r\n- DistinguishedName\r\n- EnabledForRichPresence\r\n- ExchangeArchivingPolicy\r\n- ExchUserHoldPolicies\r\n- ExperiencePolicy\r\n- ExternalUserCommunicationPolicy\r\n- ExUmEnabled\r\n- Guid\r\n- HomeServer\r\n- HostedVoicemailPolicy\r\n- IPPBXSoftPhoneRoutingEnabled\r\n- IPPhone\r\n- IPPhonePolicy\r\n- IsByPassValidation\r\n- IsValid\r\n- LegalInterceptPolicy\r\n- LicenseRemovalTimestamp\r\n- LineServerURI\r\n- Manager\r\n- MNCReady\r\n- Name\r\n- NonPrimaryResource\r\n- ObjectCategory\r\n- ObjectClass\r\n- ObjectState\r\n- OnPremHideFromAddressLists\r\n- OriginalPreferredDataLocation\r\n- OriginatingServer\r\n- OriginatorSid\r\n- OverridePreferredDataLocation\r\n- PendingDeletion\r\n- PrivateLine\r\n- ProvisioningCounter\r\n- ProvisioningStamp\r\n- PublishingCounter\r\n- PublishingStamp\r\n- Puid\r\n- RemoteCallControlTelephonyEnabled\r\n- RemoteMachine\r\n- SamAccountName\r\n- ServiceInfo\r\n- StsRefreshTokensValidFrom\r\n- SubProvisioningCounter\r\n- SubProvisioningStamp\r\n- SubProvisionLineType\r\n- SyncingCounter\r\n- TargetRegistrarPool\r\n- TargetServerIfMoving\r\n- TeamsInteropPolicy\r\n- ThumbnailPhoto\r\n- UpgradeRetryCounter\r\n- UserAccountControl\r\n- UserProvisionType\r\n- UserRoutingGroupId\r\n- VoicePolicy\r\n- XForestMovePolicy\r\n- AddressBookPolicy\r\n- GraphPolicy\r\n- PinPolicy\r\n- PreferredDataLocationOverwritePolicy\r\n- PresencePolicy\r\n- SmsServicePolicy\r\n- TeamsVoiceRoute\r\n- ThirdPartyVideoSystemPolicy\r\n- UserServicesPolicy\r\n- ConferencingPolicy\r\n- Id\r\n- Identity\r\n- MobilityPolicy\r\n- OnlineDialinConferencingPolicy\r\n- Sid\r\n- TeamsWorkLoadPolicy\r\n- VoiceRoutingPolicy\r\n- ClientUpdatePolicy\r\n- HomePhone\r\n- HostedVoiceMail\r\n- MobilePhone\r\n- OtherTelephone\r\n- StreetAddress\r\n- WebPage\r\n- AssignedLicenses\r\n- OnPremisesUserPrincipalName\r\n- HostedVoiceMail\r\n- LicenseAssignmentStates\r\n- OnPremDomainName\r\n- OnPremSecurityIdentifier\r\n- OnPremSamAccountName\r\n- CallerIdPolicy\r\n- Fax\r\n- LastName\r\n- Office\r\n- Phone\r\n- WindowsEmailAddress*\r\n\r\n*Attributes renamed/replaced:*\r\n- FirstName renamed to GivenName\r\n- DirSyncEnabled renamed to UserDirSyncEnabled\r\n- MCOValidationErrors renamed to UserValidationErrors\r\n\r\n*New User Attributes*\r\n\r\nFeatureTypes - Array of unique strings specifying what features are enabled for a user (plan not displayed).\r\n\r\n*Deprecated parameters*\r\n\r\nLdapFilter has been deprecated due to low usage.\r\n\r\n*Changes in \"-Filter\" parameter*\r\n- Assigned Plan filter - Previous format will no longer be supported. Existing filters like AssignedPlan eq '<some-xml-string>' will stop working. This will need to be modified to one of the below formats:\r\n  - AssignedPlans eq 'MCOEV' - For exact match\r\n  - AssignedPlans eq '*MCO*' - for contains checks.\r\n \r\n- EnterpriseVoiceEnabled filter\r\n  - EnterpriseVoiceEnabled eq true / false"
+metadata:
+  external help file: Microsoft.Rtc.Management.Hosted.dll-help.xml
+  online version: https://docs.microsoft.com/powershell/module/skype/get-csonlineuser
+  applicable: Microsoft Teams, Skype for Business Online
+  title: Get-CsOnlineUser
+  schema: 2.0.0
+  manager: bulenteg
+  author: tomkau
+  ms.author: tomkau
+  ms.reviewer: ""

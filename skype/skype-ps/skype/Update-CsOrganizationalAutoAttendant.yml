@@ -1,0 +1,81 @@
+### YamlMime:PowershellCmdlet
+summary: |-
+  > [!CAUTION]
+  > This cmdlet has been deprecated and is no longer supported.  This cmdlet will be removed in the near future.
+  > 
+  > Please use [Update-CsAutoAttendant](Update-CsAutoAttendant.yml) cmdlet instead.
+
+
+  Use Update-CsOrganizationalAutoAttendant cmdlet to force an update of resources associated with an Auto Attendant (AA) provisioning.
+module: SkypeForBusiness
+notes: ""
+inputs:
+- name: <xref href="String" data-throw-if-not-resolved="False" />
+  description: |-
+    The Update-CsOrganizationalAutoAttendant cmdlet accepts a string as the PrimaryUri parameter.
+outputs:
+- name: <xref href="None" data-throw-if-not-resolved="False" />
+  description: ""
+links:
+- text: Get-CsOrganizationalAutoAttendantStatus
+  href: Get-CsOrganizationalAutoAttendantStatus.yml
+syntaxes:
+- Update-CsOrganizationalAutoAttendant [-PrimaryUri] <Uri> [-ApplicationId <Guid>] [-Tenant <Guid>] [<CommonParameters>]
+examples:
+- title: '-------------------------- Example 1 --------------------------'
+  code: |-
+    Update-CsOrganizationalAutoAttendant -PrimaryUri "sip:mainoaa@contoso.com"
+  description: |-
+    In Example 1, the Update-CsOrganizationalAutoAttendant cmdlet is used to update all resources of an auto attendant with Primary URI of sip:mainoaa@contoso.com.
+  summary: ""
+parameters:
+- type: <xref href="System.Guid" data-throw-if-not-resolved="False" />
+  name: ApplicationId
+  description: |+
+    Specifies a custom application ID to use for OAAs. This parameter is reserved for Microsoft internal use only.
+
+  defaultValue: None
+  position: Named
+  aliases: ""
+  applicable:
+  - Skype for Business Online
+  parameterValueGroup: ""
+- type: <xref href="System.Uri" data-throw-if-not-resolved="False" />
+  name: PrimaryUri
+  isRequired: true
+  description: |+
+    The Primary URI represents the SIP address of the auto attendant whose resources are to be updated.
+
+  defaultValue: None
+  position: "0"
+  aliases: ""
+  applicable:
+  - Skype for Business Online
+  parameterValueGroup: ""
+- type: <xref href="System.Guid" data-throw-if-not-resolved="False" />
+  name: Tenant
+  description: ""
+  defaultValue: None
+  position: Named
+  aliases: ""
+  applicable:
+  - Skype for Business Online
+  parameterValueGroup: ""
+applicable:
+- Skype for Business Online
+uid: SkypeForBusiness.Update-CsOrganizationalAutoAttendant
+name: Update-CsOrganizationalAutoAttendant
+description: |-
+  This cmdlet provides a way to update the resources associated with an auto attendant configured for use in your organization. Currently, it repairs the Dial-by-Name recognition status and the SIP provisioning status of an auto attendant.
+
+  Note: This cmdlet only triggers the refresh of auto attendant resources. It does not wait until all the resources have been refreshed. The last completed status of auto attendant can be retrieved using Get-CsOrganizationalAutoAttendantStatus cmdlet.
+metadata:
+  external help file: Microsoft.Rtc.Management.Hosted.dll-help.xml
+  online version: https://docs.microsoft.com/powershell/module/skype/update-csorganizationalautoattendant
+  applicable: Skype for Business Online
+  title: Update-CsOrganizationalAutoAttendant
+  schema: 2.0.0
+  manager: bulenteg
+  author: tomkau
+  ms.author: tomkau
+  ms.reviewer: ""

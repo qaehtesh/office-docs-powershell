@@ -1,0 +1,125 @@
+### YamlMime:PowershellCmdlet
+summary: |-
+  > [!CAUTION]
+  > This cmdlet has been deprecated and is no longer supported.  This cmdlet will be removed in the near future.
+  > 
+  > Please use [New-CsAutoAttendantMenuOption](New-CsAutoAttendantMenuOption.yml) cmdlet instead.
+
+
+  Use the New-CsOrganizationalAutoAttendantMenuOption cmdlet to create a new menu option.
+module: SkypeForBusiness
+notes: ""
+inputs:
+- name: <xref href="None" data-throw-if-not-resolved="False" />
+  description: ""
+outputs:
+- name: <xref href="Microsoft.Rtc.Management.Hosted.OAA.Models.MenuOption" data-throw-if-not-resolved="False" />
+  description: ""
+links:
+- text: New-CsOrganizationalAutoAttendantCallableEntity
+  href: New-CsOrganizationalAutoAttendantCallableEntity.yml
+syntaxes:
+- >-
+  New-CsOrganizationalAutoAttendantMenuOption -Action <ActionType> -DtmfResponse <DtmfTone> [-VoiceResponses <List>]
+
+   [-CallTarget <CallableEntity>] [-Tenant <Guid>] [-DomainController <Fqdn>] [-Force] [<CommonParameters>]
+examples:
+- title: '-------------------------- Example 1 --------------------------'
+  code: |-
+    $menuOption = New-CsOrganizationalAutoAttendantMenuOption -Action TransferCallToOperator -DtmfResponse Tone0
+  description: |-
+    This example creates a menu option to call the operator when the 0 key is pressed.
+  summary: ""
+- title: '-------------------------- Example 2 --------------------------'
+  code: |-
+    $troubleShootUri = "sip:troubleShoot@contoso.com"
+    $troubleShootEntity = New-CsOrganizationalAutoAttendantCallableEntity -Identity $troubleShootUri -Type OrganizationalAutoAttendant
+    $menuOption = New-CsOrganizationalAutoAttendantMenuOption -Action TransferCallToTarget -DtmfResponse Tone1 -VoiceResponses "Sales" -CallTarget $troubleShootEntity
+  description: |-
+    This example creates a menu option to transfer the call to an auto attendant when the caller speaks the word "Sales" or presses the 1 key.
+  summary: ""
+parameters:
+- type: <xref href="ActionType" data-throw-if-not-resolved="False" />
+  name: Action
+  isRequired: true
+  description: |+
+    The Action parameter represents the action to be taken when the menu option is activated. The Action must be set to one of the following values:
+
+    - DisconnectCall - The call is disconnected.
+    - TransferCallToOperator - the call is transferred to the operator.
+    - TransferCallToTarget - The call is transferred to the menu option's call target.
+
+  defaultValue: None
+  position: Named
+  aliases: ""
+  applicable:
+  - Skype for Business Online
+  parameterValueGroup: ""
+- type: <xref href="CallableEntity" data-throw-if-not-resolved="False" />
+  name: CallTarget
+  description: |+
+    The CallTarget parameter represents the target for call transfer after the menu option is selected. 
+
+    CallTarget is required if the action of the menu option is TransferCallToTarget.
+
+    Use the New-CsOrganizationalAutoAttendantCallableEntity cmdlet to create new callable entities. 
+
+  defaultValue: None
+  position: Named
+  aliases: ""
+  applicable:
+  - Skype for Business Online
+  parameterValueGroup: ""
+- type: <xref href="DtmfTone" data-throw-if-not-resolved="False" />
+  name: DtmfResponse
+  isRequired: true
+  description: |+
+    The DtmfResponse parameter indicates the key on the telephone keypad to be pressed to activate the menu option. The DtmfResponse must be set to one of the following values:
+
+    - Tone0 to Tone9 - Corresponds to DTMF tones from 0 to 9.
+    - Automatic - The action is executed without user response.
+
+  defaultValue: None
+  position: Named
+  aliases: ""
+  applicable:
+  - Skype for Business Online
+  parameterValueGroup: ""
+- type: <xref href="Guid" data-throw-if-not-resolved="False" />
+  name: Tenant
+  description: ""
+  defaultValue: None
+  position: Named
+  aliases: ""
+  applicable:
+  - Skype for Business Online
+  parameterValueGroup: ""
+- type: <xref href="List" data-throw-if-not-resolved="False" />
+  name: VoiceResponses
+  description: |+
+    The VoiceResponses parameter represents the voice responses to select a menu option when Voice Responses are enabled for the auto attendant. 
+
+    Voice responses are currently limited to one voice response per menu option. 
+
+  defaultValue: None
+  position: Named
+  aliases: ""
+  applicable:
+  - Skype for Business Online
+  parameterValueGroup: ""
+applicable:
+- Skype for Business Online
+uid: SkypeForBusiness.New-CsOrganizationalAutoAttendantMenuOption
+name: New-CsOrganizationalAutoAttendantMenuOption
+description: |-
+  The New-CsOrganizationalAutoAttendantMenuOption cmdlet creates a new menu option for the Auto Attendant (AA) service. The OAA service uses the menu options to respond to a caller with the appropriate action.
+metadata:
+  external help file: Microsoft.Rtc.Management.Hosted.dll-help.xml
+  online version: https://docs.microsoft.com/powershell/module/skype/new-csorganizationalautoattendantmenuoption
+  applicable: Skype for Business Online
+  title: New-CsOrganizationalAutoAttendantMenuOption
+  schema: 2.0.0
+  manager: bulenteg
+  author: tomkau
+  ms.author: tomkau
+  ms.reviewer: ""

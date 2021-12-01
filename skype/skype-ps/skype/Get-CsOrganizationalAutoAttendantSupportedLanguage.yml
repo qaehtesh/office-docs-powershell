@@ -1,0 +1,68 @@
+### YamlMime:PowershellCmdlet
+summary: |-
+  > [!CAUTION]
+  > This cmdlet has been deprecated and is no longer supported.  This cmdlet will be removed in the near future.
+  > 
+  > Please use [Get-CsAutoAttendantSupportedLanguage](Get-CsAutoAttendantSupportedLanguage.yml) cmdlet instead.
+
+  The Get-CsOrganizationalAutoAttendantSupportedLanguage cmdlet gets languages that are supported by the Auto Attendant (AA) service.
+module: SkypeForBusiness
+notes: ""
+inputs:
+- name: <xref href="None" data-throw-if-not-resolved="False" />
+  description: ""
+outputs:
+- name: <xref href="Microsoft.Rtc.Management.Hosted.OAA.Models.Language" data-throw-if-not-resolved="False" />
+  description: ""
+syntaxes:
+- Get-CsOrganizationalAutoAttendantSupportedLanguage [-Identity] <System.String> [-Tenant <Guid>] [<CommonParameters>]
+examples:
+- title: '-------------------------- Example 1 --------------------------'
+  code: |-
+    Get-CsOrganizationalAutoAttendantSupportedLanguage
+  description: |-
+    This example gets all supported languages.
+  summary: ""
+- title: '-------------------------- Example 2 --------------------------'
+  code: |-
+    Get-CsOrganizationalAutoAttendantSupportedLanguage -Identity "en-US"
+  description: |-
+    This example gets the language that the Identity parameter specifies (en-US).
+  summary: ""
+parameters:
+- type: <xref href="System.String" data-throw-if-not-resolved="False" />
+  name: Identity
+  description: |+
+    The Identity parameter designates a specific language to be retrieved. If this parameter is not specified, then all supported languages are returned.
+
+  defaultValue: None
+  position: "1"
+  aliases: ""
+  applicable:
+  - Skype for Business Online
+  parameterValueGroup: ""
+- type: <xref href="System.Guid" data-throw-if-not-resolved="False" />
+  name: Tenant
+  description: ""
+  defaultValue: None
+  position: Named
+  aliases: ""
+  applicable:
+  - Skype for Business Online
+  parameterValueGroup: ""
+applicable:
+- Skype for Business Online
+uid: SkypeForBusiness.Get-CsOrganizationalAutoAttendantSupportedLanguage
+name: Get-CsOrganizationalAutoAttendantSupportedLanguage
+description: |-
+  The Get-CsOrganizationalAutoAttendantSupportedLanguage cmdlet gets all languages (and their corresponding voices/speakers) that are supported by the OAA service.
+metadata:
+  external help file: Microsoft.Rtc.Management.Hosted.dll-help.xml
+  online version: https://docs.microsoft.com/powershell/module/skype/get-csorganizationalautoattendantsupportedlanguage
+  applicable: Skype for Business Online
+  title: Get-CsOrganizationalAutoAttendantSupportedLanguage
+  schema: 2.0.0
+  manager: bulenteg
+  author: tomkau
+  ms.author: tomkau
+  ms.reviewer: ""
