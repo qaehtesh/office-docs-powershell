@@ -541,7 +541,7 @@ Accept pipeline input: False
 Accept wildcard characters: False
 ```
 
-### -GlobalReadingPanePosition
+### -GlobalReadingPanePosition (This parameter is legacy and is deprecated. Currently this setting is UI only and new parameter in Powershell is not available.)
 The GlobalReadingPanePosition specifies the default location of the reading pane in Outlook on the web. Valid values are:
 
 - Off
